@@ -6,6 +6,7 @@ import os
 
 
 class akshare_kdata:
+    """通过akshare接口下载K线数据"""
     dirpath = "kdata_daily"
 
     def __init__(self):
@@ -33,7 +34,7 @@ class akshare_kdata:
                )
             if len(kdata) < 10:
                 continue
-            filepath = self.dirpath + "/" + stockcode + ".csv"
+            filepath = self.dirpath + "/" + stock + ".csv"
             if os.path.exists(filepath):
                 os.remove(filepath)
             colums = [
