@@ -96,7 +96,8 @@ class ManagerWidget(QtWidgets.QWidget):
             "成交量",
             "成交额",
             "持仓量",
-            "振幅"
+            "振幅",
+            "获利比率"
         ]
 
         self.table: QtWidgets.QTableWidget = QtWidgets.QTableWidget()
@@ -321,6 +322,7 @@ class ManagerWidget(QtWidgets.QWidget):
             self.table.setItem(row, 6, DataCell(str(bar.turnover)))
             self.table.setItem(row, 7, DataCell(str(bar.open_interest)))
             self.table.setItem(row, 8, DataCell(str(bar.amplitude)))
+            self.table.setItem(row, 9, DataCell(str(bar.takeprofitratio)))
 
     def delete_data(
         self,

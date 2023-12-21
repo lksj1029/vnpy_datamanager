@@ -1,10 +1,11 @@
 import akshare as ak
-from tqdm import tqdm
+import time
 import numpy as np
 import datetime as dt
 import os
 import pandas as pd
 
+from tqdm import tqdm
 
 class AkshareData:
     """通过akshare接口下载K线数据"""
@@ -97,6 +98,9 @@ class AkshareData:
                 continue
             if len(kdata) < 10 or len(cyqdata) < 10:
                 continue
+            cyqdata = cyqdata.round(
+                {'takeprofitratio': 6}
+            )
             data: pd.DataFrame = pd.merge(
                 kdata,
                 cyqdata, on='datetime'

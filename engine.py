@@ -41,6 +41,7 @@ class ManagerEngine(BaseEngine):
         volume_head: str,
         turnover_head: str,
         amplitude_head: str,
+        takeprofitratio_head: str,
         open_interest_head: str,
         datetime_format: str
     ) -> tuple:
@@ -77,6 +78,7 @@ class ManagerEngine(BaseEngine):
                 close_price=float(item[close_head]),
                 turnover=float(turnover),
                 amplitude=float(item[amplitude_head]),
+                takeprofitratio=float(item[takeprofitratio_head]),
                 open_interest=float(open_interest),
                 gateway_name="DB",
             )
