@@ -14,26 +14,36 @@ if __name__ == '__main__':
     me = ManagerEngine(MainEngine, EventEngine)
     for file in tqdm(filenames, position=0, desc='导入K线数据'):
         filepath: str = filedir + '\\' + file
-        symbol: str = file.split('.')[1]
-        if 'sh' in file:
+        symbol: str = file.split('.')[0]
+        if 'SH' in file:
             exchange: Exchange = Exchange.SSE
-        else:
+        elif 'SZ' in file:
             exchange: Exchange = Exchange.SZSE
+        else:
+            continue
         me.import_data_from_csv(
             file_path=filepath,
             symbol=symbol,
             exchange=exchange,
             interval=Interval.DAILY,
             tz_name='Asia/Shanghai',
-            datetime_head='datetime',
+            datetime_head='trade_date',
             open_head='open',
             high_head='high',
             low_head='low',
             close_head='close',
-            volume_head='volume',
-            turnover_head='turnover',
+            volume_head='vol',
+            amount_head='amount',
+            pct_chg_head='pct_chg',
+            his_low_head='his_low',
+            his_high_head='his_high',
+            cost_5pct_head='cost_5pct',
+            cost_15pct_head='cost_15pct',
+            cost_50pct_head='cost_50pct',
+            cost_85pct_head='cost_85pct',
+            cost_95pct_head='cost_95pct',
+            weight_avg_head='weight_avg',
+            winner_rate_head='winner_rate',
             open_interest_head='',
-            amplitude_head='amplitude',
-            takeprofitratio_head='takeprofitratio',
-            datetime_format='%Y-%m-%d'
+            datetime_format='%Y%m%d'
         )

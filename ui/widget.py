@@ -96,7 +96,13 @@ class ManagerWidget(QtWidgets.QWidget):
             "成交量",
             "成交额",
             "持仓量",
-            "振幅",
+            "涨跌幅",
+            "百分位5",
+            "百分位15",
+            "百分位50",
+            "百分位85",
+            "百分位95",
+            "平均成本",
             "获利比率"
         ]
 
@@ -211,7 +217,7 @@ class ManagerWidget(QtWidgets.QWidget):
         high_head: str = dialog.high_edit.text()
         close_head: str = dialog.close_edit.text()
         volume_head: str = dialog.volume_edit.text()
-        turnover_head: str = dialog.turnover_edit.text()
+        amount_head: str = dialog.amount_edit.text()
         open_interest_head: str = dialog.open_interest_edit.text()
         datetime_format: str = dialog.format_edit.text()
 
@@ -227,7 +233,7 @@ class ManagerWidget(QtWidgets.QWidget):
             low_head,
             close_head,
             volume_head,
-            turnover_head,
+            amount_head,
             open_interest_head,
             datetime_format
         )
@@ -319,10 +325,16 @@ class ManagerWidget(QtWidgets.QWidget):
             self.table.setItem(row, 3, DataCell(str(bar.low_price)))
             self.table.setItem(row, 4, DataCell(str(bar.close_price)))
             self.table.setItem(row, 5, DataCell(str(bar.volume)))
-            self.table.setItem(row, 6, DataCell(str(bar.turnover)))
+            self.table.setItem(row, 6, DataCell(str(bar.amount)))
             self.table.setItem(row, 7, DataCell(str(bar.open_interest)))
-            self.table.setItem(row, 8, DataCell(str(bar.amplitude)))
-            self.table.setItem(row, 9, DataCell(str(bar.takeprofitratio)))
+            self.table.setItem(row, 8, DataCell(str(bar.pct_chg)))
+            self.table.setItem(row, 9, DataCell(str(bar.cost_5pct)))
+            self.table.setItem(row, 10, DataCell(str(bar.cost_15pct)))
+            self.table.setItem(row, 11, DataCell(str(bar.cost_50pct)))
+            self.table.setItem(row, 12, DataCell(str(bar.cost_85pct)))
+            self.table.setItem(row, 13, DataCell(str(bar.cost_95pct)))
+            self.table.setItem(row, 14, DataCell(str(bar.weight_avg)))
+            self.table.setItem(row, 15, DataCell(str(bar.winner_rate)))
 
     def delete_data(
         self,

@@ -39,9 +39,17 @@ class ManagerEngine(BaseEngine):
         low_head: str,
         close_head: str,
         volume_head: str,
-        turnover_head: str,
-        amplitude_head: str,
-        takeprofitratio_head: str,
+        amount_head: str,
+        pct_chg_head: str,
+        his_low_head: str,
+        his_high_head: str,
+        cost_5pct_head: str,
+        cost_15pct_head: str,
+        cost_50pct_head: str,
+        cost_85pct_head: str,
+        cost_95pct_head: str,
+        weight_avg_head: str,
+        winner_rate_head: str,
         open_interest_head: str,
         datetime_format: str
     ) -> tuple:
@@ -63,7 +71,7 @@ class ManagerEngine(BaseEngine):
                 dt: datetime = datetime.fromisoformat(item[datetime_head])
             dt = dt.replace(tzinfo=tz)
 
-            turnover = item.get(turnover_head, 0)
+            amount = item.get(amount_head, 0)
             open_interest = item.get(open_interest_head, 0)
 
             bar: BarData = BarData(
@@ -76,12 +84,20 @@ class ManagerEngine(BaseEngine):
                 high_price=float(item[high_head]),
                 low_price=float(item[low_head]),
                 close_price=float(item[close_head]),
-                turnover=float(turnover),
-                amplitude=float(item[amplitude_head]),
-                takeprofitratio=float(item[takeprofitratio_head]),
+                amount=float(item[amount_head]),
+                pct_chg=float(item[pct_chg_head]),
+                his_low=float(item[his_low_head]),
+                his_high=float(item[his_high_head]),
+                cost_5pct=float(item[cost_5pct_head]),
+                cost_15pct=float(item[cost_15pct_head]),
+                cost_50pct=float(item[cost_50pct_head]),
+                cost_85pct=float(item[cost_85pct_head]),
+                cost_95pct=float(item[cost_95pct_head]),
+                weight_avg=float(item[weight_avg_head]),
+                winner_rate=float(item[winner_rate_head]),
                 open_interest=float(open_interest),
-                gateway_name="DB",
-            )
+                gateway_name="DB"
+                )
 
             bars.append(bar)
 
